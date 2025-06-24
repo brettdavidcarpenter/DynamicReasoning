@@ -16,6 +16,7 @@ class DynamicAgent:
         """
         for step in script:
             self.metrics.record_turn()
+            self.metrics.log_event({"agent": "dynamic", "step": step})
             if step == "error":
                 self.metrics.record_error()
         self.metrics.record_task_completed()

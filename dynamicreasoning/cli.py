@@ -21,7 +21,19 @@ def run_dynamic(args):
         script = [line.strip() for line in f if line.strip()]
     metrics = Metrics()
     agent = DynamicAgent(metrics)
+
+    if args.graph:
+        from dynamic_agent.knowledge_graph import KnowledgeGraph
+        from dynamic_agent.reasoning_engine import ReasoningEngine
+
+        kg = KnowledgeGraph.load(args.graph)
+        engine = ReasoningEngine(kg)
+        plan = engine.generate_plan(script[0], script[-1], max_depth=len(script))
+    else:
+        plan = []
+
     summary = agent.converse(script)
+    summary["plan"] = plan
     with open(args.output, "w") as f:
         json.dump(summary, f)
 

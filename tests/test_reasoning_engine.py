@@ -25,3 +25,12 @@ def test_plan_wrapper():
     kg.add_fact('A', 'next', 'B')
     engine = ReasoningEngine(kg)
     assert engine.plan('A', 'B') == engine.generate_plan('A', 'B')
+
+
+def test_max_depth_limit():
+    kg = KnowledgeGraph()
+    kg.add_fact('A', 'r', 'B')
+    kg.add_fact('B', 'r', 'C')
+    engine = ReasoningEngine(kg)
+    # Depth limit of 1 should not reach C
+    assert engine.generate_plan('A', 'C', max_depth=1) == []

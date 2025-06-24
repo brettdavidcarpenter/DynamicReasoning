@@ -14,5 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await res.json();
     document.getElementById('static').textContent = JSON.stringify(data.static, null, 2);
     document.getElementById('dynamic').textContent = JSON.stringify(data.dynamic, null, 2);
+    const events = [...(data.static.events || []), ...(data.dynamic.events || [])];
+    document.getElementById('events').textContent = events.map(e => JSON.stringify(e)).join('\n');
   });
 });

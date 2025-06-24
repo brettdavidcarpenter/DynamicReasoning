@@ -9,7 +9,8 @@ class StaticAgent:
         self.turns = turns
 
     def converse(self):
-        for _ in range(self.turns):
+        for i in range(self.turns):
             self.metrics.record_turn()
+            self.metrics.log_event({"agent": "static", "turn": i + 1})
         self.metrics.record_task_completed()
         return self.metrics.summary()
