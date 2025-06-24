@@ -41,3 +41,9 @@ class ReasoningEngine:
                     visited.add(neighbor)
                     queue.append((neighbor, path + [(node, rel, neighbor)]))
         return []
+
+    # ------------------------------------------------------------------
+    # Backwards compatibility -------------------------------------------------
+    def plan(self, start, goal, relations=None):
+        """Return a plan using :meth:`generate_plan` for compatibility."""
+        return self.generate_plan(start, goal, relations)

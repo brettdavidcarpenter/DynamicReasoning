@@ -16,7 +16,31 @@ The reasoning engine evaluates the knowledge graph to choose actions dynamically
 4. Execute the best action and update the state.
 5. Repeat until the goal is achieved or no actions remain.
 
-This approach lets the agent adapt to failures or new information at runtime.
+This approach lets the agent adapt to failures or new information at runtime. The
+`ReasoningEngine` queries the `KnowledgeGraph` for neighboring nodes and uses a
+breadth‑first search (BFS) to connect a start entity to a goal entity. Each
+traversed edge forms a `(subject, relation, object)` triple in the returned plan.
+
+### Configuring relationships for BFS planning
+
+The optional ``relations`` argument restricts which edge types the BFS explores.
+Supplying a set of relation names helps focus the plan on specific connections.
+
+```python
+from dynamic_agent.knowledge_graph import KnowledgeGraph
+from dynamic_agent.reasoning_engine import ReasoningEngine
+
+kg = KnowledgeGraph()
+kg.add_fact("A", "next", "B")
+kg.add_fact("B", "blocks", "C")
+engine = ReasoningEngine(kg)
+
+# Only follow "next" edges during planning
+plan = engine.generate_plan("A", "C", relations={"next"})
+```
+
+In this case the ``blocks`` relation is ignored and the plan only contains the
+allowed ``next`` edge.
 
 ## Running the CLI
 
@@ -47,4 +71,4 @@ Run it with:
 python -m ui.side_by_side
 ```
 
-Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side.
+Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side
