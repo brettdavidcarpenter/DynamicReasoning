@@ -71,14 +71,4 @@ Run it with:
 python -m ui.side_by_side
 ```
 
-Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side.
-
-## Running Tests
-
-Execute the test suite from the repository root:
-
-```bash
-PYTHONPATH=. pytest
-```
-
-All tests should pass and the output will contain a summary similar to ``6 passed``. Any failures are reported with stack traces to help diagnose issues.
+Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side
