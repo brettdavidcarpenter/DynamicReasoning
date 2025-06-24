@@ -19,3 +19,14 @@ PYTHONPATH=. pytest
 
 For detailed documentation, including how the knowledge graph works and how to
 launch the side-by-side UI, see [docs/README.md](docs/README.md).
+
+## Web UI
+
+A small web interface is provided under `web/`. Start it locally with:
+
+```bash
+python web_server.py
+```
+
+Then open `http://localhost:8000` in your browser. The same code can be
+deployed on Vercel using `api/compare.py` as a serverless function.

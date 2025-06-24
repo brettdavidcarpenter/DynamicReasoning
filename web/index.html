@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Agent Comparison</title>
+  <script defer src="app.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    textarea { width: 100%; height: 150px; }
+    pre { background: #f0f0f0; padding: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Agent Comparison</h1>
+  <label for="script">Conversation script (one step per line):</label><br />
+  <textarea id="script"></textarea><br />
+  <button id="run">Run</button>
+  <div style="display:flex; gap:2rem; margin-top:1rem;">
+    <div>
+      <h3>StaticAgent Metrics</h3>
+      <pre id="static"></pre>
+    </div>
+    <div>
+      <h3>DynamicAgent Metrics</h3>
+      <pre id="dynamic"></pre>
+    </div>
+  </div>
+</body>
+</html>
