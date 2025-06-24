@@ -48,10 +48,10 @@ Use the CLI to run agents and gather metrics.
 
 ```bash
 # Static agent
-python -m dynamicreasoning.cli run static --output runs/static.json
+python -m dynamicreasoning.cli run static --turns 3 --output runs/static.json
 
 # Dynamic agent
-python -m dynamicreasoning.cli run dynamic --graph graph.yaml --output runs/dynamic.json
+python -m dynamicreasoning.cli run dynamic --script script.txt --output runs/dynamic.json
 
 # Metrics
 python -m dynamicreasoning.cli metrics runs/static.json runs/dynamic.json --output metrics.csv
