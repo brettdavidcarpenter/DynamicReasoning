@@ -18,3 +18,10 @@ def test_generate_plan_relation_filter():
     engine = ReasoningEngine(kg)
     plan = engine.generate_plan('A', 'C', relations={'r1'})
     assert plan == []
+
+
+def test_plan_wrapper():
+    kg = KnowledgeGraph()
+    kg.add_fact('A', 'next', 'B')
+    engine = ReasoningEngine(kg)
+    assert engine.plan('A', 'B') == engine.generate_plan('A', 'B')
