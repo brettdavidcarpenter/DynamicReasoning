@@ -6,6 +6,10 @@ This document explains how the knowledge graph and reasoning engine function wit
 
 The knowledge graph captures tasks and relationships as triples stored in `graph.yaml`. Each node represents an action or piece of contextual information. Edges denote prerequisites or consequences. When the CLI launches the dynamic agent it loads this file into memory, allowing the reasoning engine to query for possible next steps based on the current state.
 
+Graphs can now be saved and loaded from JSON files using ``KnowledgeGraph.save``
+and ``KnowledgeGraph.load``. This makes it easy to persist larger graphs and
+reuse them across sessions.
+
 ## Reasoning Engine
 
 The reasoning engine evaluates the knowledge graph to choose actions dynamically:
@@ -52,6 +56,9 @@ python -m dynamicreasoning.cli run static --turns 3 --output runs/static.json
 
 # Dynamic agent
 python -m dynamicreasoning.cli run dynamic --script script.txt --output runs/dynamic.json
+# Using a custom knowledge graph
+python -m dynamicreasoning.cli run dynamic --script script.txt \
+    --graph graph.json --output runs/dynamic.json
 
 # Metrics
 python -m dynamicreasoning.cli metrics runs/static.json runs/dynamic.json --output metrics.csv

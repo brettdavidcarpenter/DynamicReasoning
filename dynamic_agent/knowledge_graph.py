@@ -12,6 +12,13 @@ class KnowledgeGraph:
         # to iterate over all facts on every call.
         self._adj = {}
 
+    # ------------------------------------------------------------------
+    # Basic graph manipulation utilities
+
+    def has_fact(self, subject, relation, obj):
+        """Return True if the triple exists in the graph."""
+        return (subject, relation, obj) in self._facts
+
     def add_fact(self, subject, relation, obj):
         """Add a fact triple to the graph."""
         if (subject, relation, obj) in self._facts:
@@ -19,6 +26,29 @@ class KnowledgeGraph:
 
         self._facts.add((subject, relation, obj))
         self._adj.setdefault(subject, {}).setdefault(relation, set()).add(obj)
+
+    # ------------------------------------------------------------------
+    # Persistence helpers ----------------------------------------------------
+
+    def save(self, path):
+        """Serialize the graph to a JSON file."""
+        import json
+
+        data = list(self._facts)
+        with open(path, "w") as f:
+            json.dump(data, f)
+
+    @classmethod
+    def load(cls, path):
+        """Load a graph from a JSON file and return a new instance."""
+        import json
+
+        kg = cls()
+        with open(path, "r") as f:
+            data = json.load(f)
+        for s, r, o in data:
+            kg.add_fact(s, r, o)
+        return kg
 
     def get_facts_by_entity(self, entity):
         """Return all facts where the given entity appears as subject or object."""

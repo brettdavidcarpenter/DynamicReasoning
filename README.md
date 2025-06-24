@@ -20,6 +20,15 @@ PYTHONPATH=. pytest
 For detailed documentation, including how the knowledge graph works and how to
 launch the side-by-side UI, see [docs/README.md](docs/README.md).
 
+After installing the package you can run the CLI directly:
+
+```bash
+pip install -e .
+dynamicreasoning run dynamic --script my_script.txt --output out.json
+```
+The dynamic agent accepts ``--graph`` to load a JSON knowledge graph created
+with ``KnowledgeGraph.save``.
+
 ## Web UI
 
 A small web interface is provided under `web/`. Start it locally with:
@@ -28,5 +37,6 @@ A small web interface is provided under `web/`. Start it locally with:
 python web_server.py
 ```
 
-Then open `http://localhost:8000` in your browser. The same code can be
+Then open `http://localhost:8000` in your browser to use the interface. The
+same code can be
 deployed on Vercel using `api/compare.py` as a serverless function.

@@ -14,6 +14,8 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(summary["tasks_completed"], 1)
         self.assertEqual(summary["errors"], 0)
         self.assertIsNone(summary["avg_csat"])
+        assert "elapsed_time" in summary
+        assert summary["success_rate"] == 1.0
 
     def test_dynamic_agent_metrics(self):
         metrics = Metrics()
@@ -23,6 +25,7 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(summary["turns"], 3)
         self.assertEqual(summary["tasks_completed"], 1)
         self.assertEqual(summary["errors"], 1)
+        assert summary["success_rate"] == 0.5
 
 
 if __name__ == "__main__":

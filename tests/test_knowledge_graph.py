@@ -33,3 +33,12 @@ def test_neighbors():
 
     # Entities without outgoing edges should yield an empty list.
     assert kg.neighbors('D') == []
+
+
+def test_save_and_load(tmp_path):
+    kg = KnowledgeGraph()
+    kg.add_fact('a', 'b', 'c')
+    path = tmp_path / 'graph.json'
+    kg.save(path)
+    kg2 = KnowledgeGraph.load(path)
+    assert kg2.has_fact('a', 'b', 'c')
