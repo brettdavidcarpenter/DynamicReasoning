@@ -71,4 +71,15 @@ Run it with:
 python -m ui.side_by_side
 ```
 
-Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side
+Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side.
+
+## Web UI
+
+The `web/` directory contains a small browser interface. Launch it locally with:
+
+```bash
+python web_server.py
+```
+
+Open `http://localhost:8000` and paste your conversation script to compare the
+agents. The same files can be deployed on Vercel using `api/compare.py`.
