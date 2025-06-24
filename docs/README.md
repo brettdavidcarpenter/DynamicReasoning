@@ -37,3 +37,14 @@ python -m dynamicreasoning.cli compare metrics.csv
 ```
 
 Running these commands produces JSON logs and CSV metrics that help evaluate how the dynamic agent performs versus the static one.
+
+## Side-by-Side UI
+
+A minimal graphical interface is provided to compare both agents with the same conversation script.
+Run it with:
+
+```bash
+python -m ui.side_by_side
+```
+
+Enter one step per line and press **Run** to display the metrics for `StaticAgent` and `DynamicAgent` side by side.
